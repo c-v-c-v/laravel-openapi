@@ -1,0 +1,11 @@
+includes:
+    #
+
+parameters:
+
+    paths:
+        - src/
+    level: 5
+    ignoreErrors:
+        # - '#message#'
+

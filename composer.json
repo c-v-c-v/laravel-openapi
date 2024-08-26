@@ -1,0 +1,41 @@
+{
+    "name": "cv/laravel-openapi",
+    "description": "openapi for laravel",
+    "type": "library",
+    "require": {
+        "zircote/swagger-php": "^4.10",
+        "darkaonline/l5-swagger": "^8.6",
+        "laravel/framework": "^11.9",
+        "php": "^8.2"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Cv\\LaravelOpenApi\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "cv"
+        }
+    ],
+    "require-dev": {
+        "phpstan/phpstan": "^1.11",
+        "laravel/pint": "^1.17"
+    },
+    "scripts": {
+        "analyse": [
+            "@php vendor/bin/phpstan analyse"
+        ],
+        "pint": [
+            "@php vendor/bin/pint"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Cv\\LaravelOpenApi\\LaravelOpenApiServiceProvider"
+            ]
+        }
+    }
+}
