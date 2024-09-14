@@ -11,6 +11,10 @@ class LaravelOpenApiServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->registerBind();
+
+        if (! app()->configurationIsCached()) {
+            $this->mergeConfigFrom(__DIR__.'/../config/laravel-openapi.php', 'laravel-openapi');
+        }
     }
 
     public function boot(): void
@@ -19,6 +23,16 @@ class LaravelOpenApiServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../config/laravel-openapi.php' => config_path('laravel-openapi.php'),
         ], 'config');
+
+        // 发布视图
+        $viewPath = __DIR__.'/../resources/views';
+        $this->loadViewsFrom($viewPath, 'laravel-openapi');
+        $this->publishes([
+            $viewPath => resource_path('views/vendor/cv/laravel-openapi'),
+        ], 'views');
+
+        // 加载路由
+        $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
     }
 
     private function registerBind(): void
